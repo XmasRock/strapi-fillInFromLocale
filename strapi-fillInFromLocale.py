@@ -18,8 +18,8 @@ def fillInFromSource(contentType, id, source, target):
     print(url)
     parameters = {"locale" : source, "populate" : "*"}
     headers = {"Authorization": "Bearer "+token}
-    reponse = requests.get(url,params=parameters, headers=headers)
-    data = reponse.json()
+    response = requests.get(url,params=parameters, headers=headers)
+    data = response.json()
     print(json.dumps(data,indent=4))
 
     # --- manipulate the data
@@ -29,8 +29,8 @@ def fillInFromSource(contentType, id, source, target):
     del data["data"]["attributes"]["publishedAt"]
     # --- create the same data for new locale
     url = urlBase +"/"+contentType+"s/"+id+"/localizations"
-    reponse = requests.post(url,headers=headers,json=data["data"]["attributes"])
-    print(json.dumps(reponse.json(),indent=4))
+    response = requests.post(url,headers=headers,json=data["data"]["attributes"])
+    print(json.dumps(response.json(),indent=4))
 
 
     
